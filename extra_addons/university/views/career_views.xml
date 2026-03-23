@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_university_career_form" model="ir.ui.view">
+        <field name="name">university.career.form</field>
+        <field name="model">university.career</field>
+        <field name="arch" type="xml">
+            <form string="Carrera">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Nombre de la Carrera"/>
+                        <h1><field name="name" placeholder="Ej: Ingeniería en Sistemas"/></h1>
+                    </div>
+                    <group>
+                        <group string="Información Académica">
+                            <field name="code" string="Código de Carrera"/>
+                            <field name="duration_years"/>
+                        </group>
+                        <group string="Estadísticas">
+                            <field name="enrolled_count" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Planes de Estudio" name="study_plans">
+                            <field name="study_plan_ids">
+                                <list editable="bottom">
+                                    <field name="name" string="Nombre del Plan"/>
+                                    <field name="code" string="Plan de Estudios"/>
+                                    <field name="is_active" string="Activo"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <page string="Asignaturas Totales" name="subjects">
+                            <field name="subject_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="study_year"/>
+                                    <field name="study_plan_id" string="Pertenece al Plan"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

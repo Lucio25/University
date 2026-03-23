@@ -1,0 +1,65 @@
+<odoo>
+    <menuitem id="menu_university_root"
+              name="Universidad"
+              sequence="10"/>
+
+    <menuitem id="menu_university_academic"
+              name="Académica"
+              parent="menu_university_root"
+              sequence="10"
+              groups="university.group_university_academic"/>
+
+    <menuitem id="menu_student"
+              name="Estudiantes"
+              parent="menu_university_academic"
+              action="action_university_student"
+              sequence="10"/>
+
+    <menuitem id="menu_enrollment"
+              name="Inscripciones"
+              parent="menu_university_academic"
+              action="action_university_enrollment"
+              sequence="20"/>
+
+    <menuitem id="menu_university_finance_root"
+              name="Finanzas"
+              parent="menu_university_root"
+              sequence="50"
+              groups="university.group_university_finance"/>
+
+    <menuitem id="menu_teacher_finance"
+              name="Pagos a Profesores"
+              parent="menu_university_finance_root"
+              action="action_university_teacher_finance"
+              sequence="10"/>
+
+    <menuitem id="menu_university_config"
+              name="Configuración"
+              parent="menu_university_root"
+              sequence="100"
+              groups="university.group_university_academic"/>
+
+    <menuitem id="menu_career"
+              name="Carreras"
+              parent="menu_university_config"
+              action="action_university_career"
+              sequence="10"/>
+
+    <menuitem id="menu_study_plan"
+              name="Planes de Estudio"
+              parent="menu_university_config"
+              action="action_university_study_plan"
+              sequence="15"/>
+
+    <menuitem id="menu_subject"
+              name="Materias"
+              parent="menu_university_config"
+              action="action_university_subject"
+              sequence="20"/>
+
+    <menuitem id="menu_teacher"
+              name="Profesores"
+              parent="menu_university_config"
+              action="action_university_teacher"
+              sequence="30"/>
+</odoo>

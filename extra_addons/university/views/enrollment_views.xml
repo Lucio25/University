@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_university_enrollment_tree" model="ir.ui.view">
+        <field name="name">university.enrollment.tree</field>
+        <field name="model">university.enrollment</field>
+        <field name="arch" type="xml">
+            <list string="Inscripciones">
+                <field name="student_id" string="Estudiante"/>
+                <field name="career_id" string="Carrera"/>
+                <field name="study_plan_id" string="Plan de Estudios"/>
+                <field name="year" string="Año de Cursada" widget="badge" decoration-info="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_university_enrollment_form" model="ir.ui.view">
+        <field name="name">university.enrollment.form</field>
+        <field name="model">university.enrollment</field>
+        <field name="arch" type="xml">
+            <form string="Inscripción">
+                <sheet>
+                    <group>
+                        <group string="Información Principal">
+                            <field name="student_id" placeholder="Seleccioná al alumno..."/>
+                            <field name="career_id" options="{'no_create': True}"/>
+                        </group>
+                        <group string="Detalles Académicos">
+                            <field name="study_plan_id"
+                                   options="{'no_create': True}"
+                                   domain="[('career_id', '=', career_id)]"/>
+                            <field name="year"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Materias y Calificaciones" name="lines">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="career_id" column_invisible="1"/>
+                                    <field name="study_plan_id" column_invisible="1"/>
+
+                                    <field name="subject_id"
+                                           domain="[('study_plan_id', '=', parent.study_plan_id)]"/>
+
+                                    <field name="subject_year" string="Año Materia" widget="badge" decoration-info="1"/>
+
+                                    <field name="teacher_id" readonly="1"/>
+
+                                    <field name="note" decoration-danger="note &lt; 4" decoration-success="note &gt;= 7"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_university_student_list" model="ir.ui.view">
+        <field name="name">university.student.list</field>
+        <field name="model">university.student</field>
+        <field name="arch" type="xml">
+            <list string="Estudiantes">
+                <field name="registration_number" string="Legajo" decoration-bf="1"/>
+                <field name="name" string="Nombre Completo"/>
+                <field name="email"/>
+                <field name="career_id" string="Carrera"/>
+                <field name="study_plan_id" string="Plan" optional="show"/>
+                <field name="study_year" string="Año" decoration-info="study_year != '0'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_university_student_form" model="ir.ui.view">
+        <field name="name">university.student.form</field>
+        <field name="model">university.student</field>
+        <field name="arch" type="xml">
+            <form string="Ficha del Estudiante">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Nombre del Alumno"/>
+                        <h1>
+                            <field name="name" placeholder="Ej: Francisco Martinez"/>
+                        </h1>
+                        <h3>
+                            <field name="registration_number" placeholder="Legajo (ej: ISI-123)"/>
+                        </h3>
+                    </div>
+
+                    <group>
+                        <group string="Datos de Contacto">
+                            <field name="email" widget="email"/>
+                            <field name="phone" widget="phone"/>
+                        </group>
+                        <group string="Resumen Académico">
+                            <field name="career_id" options="{'no_create': True}"/>
+                            <field name="study_plan_id"
+                                   string="Plan de Estudios"
+                                   domain="[('career_id', '=', career_id)]"
+                                   options="{'no_create': True}"/>
+                            <field name="career_duration_info" string="Duración Carrera"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Inscripciones y Materias" name="enrollments">
+                            <field name="enrollment_ids">
+                                <list string="Inscripciones">
+                                    <field name="career_id"/>
+                                    <field name="study_plan_id" string="Plan de Estudios"/>
+                                    <field name="year" string="Año Cursado"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <page string="Materias Aprobadas" name="all_subjects">
+                            <field name="subject_ids" widget="many2many_tags" readonly="1 "/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

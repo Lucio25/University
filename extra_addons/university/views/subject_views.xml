@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_university_subject_list" model="ir.ui.view">
+        <field name="name">university.subject.list</field>
+        <field name="model">university.subject</field>
+        <field name="arch" type="xml">
+            <list string="Materias">
+                <field name="name" decoration-bf="1"/>
+                <field name="career_id"/>
+                <field name="study_year"
+                       widget="badge"
+                       decoration-info="study_year in ['1','2']"
+                       decoration-warning="study_year in ['3','4']"
+                       decoration-success="study_year in ['5','6']"/>
+                <field name="teacher_id"/>
+                <field name="enrolled_count" sum="Total Inscriptos" string="Inscriptos"/>
+                <field name="max_capacity" string="Cupo Máximo" sum="Capacidad Total"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_university_subject_form" model="ir.ui.view">
+        <field name="name">university.subject.form</field>
+        <field name="model">university.subject</field>
+        <field name="arch" type="xml">
+            <form string="Materia">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Nombre de la Asignatura"/>
+                        <h1>
+                            <field name="name" placeholder="Ej: Análisis Matemático I"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Detalles de la Carrera">
+                            <field name="career_id" options="{'no_create': True, 'no_open': False}"/>
+                            <field name="study_year"/>
+                        </group>
+                        <group string="Personal Docente">
+                            <field name="teacher_id" options="{'no_create_edit': True}"/>
+                        </group>
+                    </group>
+                    <group string="Gestión de Cupos y Estadísticas">
+                        <group>
+                            <field name="max_capacity" string="Cupo Máximo Permitido"/>
+                        </group>
+                        <group>
+                            <field name="enrolled_count" readonly="1" string="Alumnos Inscriptos Actuales"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,70 @@
+<odoo>
+<!--  Guardamos la accion en una tabla interna de odoo llamada ir.actions.act_windows  -->
+    <record id="action_university_student" model="ir.actions.act_window">
+        <!--    Propiedades de la ventana    -->
+        <field name="name">Estudiantes</field>
+        <!--    Nombre del objetivo    -->
+        <field name="res_model">university.student</field>
+        <!--    Como se puede ver la info     -->
+        <!--    List es una hoja tabla, form es una ficha de un solo registro con todo el detalle    -->
+        <!--    Poniendo list,form odoo primero abre la lista, y al reves abre un formulario    -->
+        <field name="view_mode">list,form</field>
+        <!--    Lo que muestra si esta vacio    -->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea el primer estudiante (ej: Francisco Martinez)
+            </p>
+        </field>
+    </record>
+
+    <record id="action_university_enrollment" model="ir.actions.act_window">
+        <field name="name">Inscripciones</field>
+        <field name="res_model">university.enrollment</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Registra la primera inscripción y carga las materias.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_university_career" model="ir.actions.act_window">
+        <field name="name">Carreras</field>
+        <field name="res_model">university.career</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_university_subject" model="ir.actions.act_window">
+        <field name="name">Asignaturas</field>
+        <field name="res_model">university.subject</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_university_teacher" model="ir.actions.act_window">
+        <field name="name">Profesores</field>
+        <field name="res_model">university.teacher</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_university_teacher_finance" model="ir.actions.act_window">
+        <field name="name">Gestión de Pagos a Profesores</field>
+        <field name="res_model">university.teacher</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No hay profesores para gestionar pagos.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_university_study_plan" model="ir.actions.act_window">
+    <field name="name">Planes de Estudio</field>
+    <field name="res_model">university.study_plan</field>
+    <field name="view_mode">list,form</field>
+    <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+            Creá el primer Plan de Estudios
+        </p>
+    </field>
+</record>
+</odoo>

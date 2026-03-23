@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_student_academic,student.academic,model_university_student,university.group_university_academic,1,1,1,1
+access_career_academic,career.academic,model_university_career,university.group_university_academic,1,1,1,1
+access_subject_academic,subject.academic,model_university_subject,university.group_university_academic,1,1,1,1
+access_enrollment_academic,enrollment.academic,model_university_enrollment,university.group_university_academic,1,1,1,1
+access_enrollment_line_academic,enrollment.line.academic,model_university_enrollment_line,university.group_university_academic,1,1,1,1
+access_teacher_academic,teacher.academic,model_university_teacher,university.group_university_academic,1,1,1,1
+access_study_plan_academic,study.plan.academic,model_university_study_plan,university.group_university_academic,1,1,1,1
+access_teacher_finance,teacher.finance,model_university_teacher,university.group_university_finance,1,1,1,0
+access_student_finance,student.finance,model_university_student,university.group_university_finance,1,0,0,0
+access_subject_finance,subject.finance,model_university_subject,university.group_university_finance,1,0,0,0
+access_career_finance,career.finance,model_university_career,university.group_university_finance,1,0,0,0
+access_study_plan_finance,study.plan.finance,model_university_study_plan,university.group_university_finance,1,0,0,0

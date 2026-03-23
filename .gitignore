@@ -1,0 +1,26 @@
+# --- Reglas originales de Odoo ---
+_build/
+.*
+!.gitignore
+!.gitkeep
+!.github
+!.weblate.json
+*.py[co]
+__pycache__/
+*.egg-info
+*~
+*.orig
+status
+odoo/filestore
+/odoo.conf
+odoo.log
+
+/addons/
+/odoo/
+/debian/
+/doc/
+/setup/
+odoo-bin
+
+!/extra_addons/
+
