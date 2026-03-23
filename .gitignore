@@ -1,19 +1,12 @@
-# --- Reglas originales de Odoo ---
-_build/
-.*
-!.gitignore
-!.gitkeep
-!.github
-!.weblate.json
-*.py[co]
 __pycache__/
-*.egg-info
-*~
-*.orig
-status
-odoo/filestore
-/odoo.conf
-odoo.log
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+.env
+.vscode/
+.idea/
 
 /addons/
 /odoo/
@@ -21,6 +14,13 @@ odoo.log
 /doc/
 /setup/
 odoo-bin
+*.log
+*.conf
+/odoo/filestore/
 
+.DS_Store
+Thumbs.db
+
+# --- EXCEPCIONES ---
 !/extra_addons/
-
+!/UniversityApi/
