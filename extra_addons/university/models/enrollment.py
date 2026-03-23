@@ -36,6 +36,12 @@ class UniversityEnrollment(models.Model):
         string='Detalle de Materias Inscriptas'
     )
 
+    grouped_subject_ids = fields.Many2many(
+        'university.subject',
+        string='Materias (agrupadas)',
+        compute='_compute_grouped_subject_ids',
+    )
+
     # Un estudiante no puede inscribirse dos veces a la misma carrera
     _sql_constraints = [
         ('unique_student_career', 'unique(student_id, career_id)',
@@ -61,3 +67,25 @@ class UniversityEnrollment(models.Model):
                     raise ValidationError(_(
                         "No hay cupo disponible en la materia: %s. Máximo permitido: %s"
                     ) % (subject_name, max_capacity))
+
+    @api.depends(
+        'student_id',
+        'career_id',
+        'study_plan_id',
+        'year',
+        'line_ids.subject_id',
+        'student_id.enrollment_ids.line_ids.subject_id',
+    )
+    def _compute_grouped_subject_ids(self):
+        for enrollment in self:
+            if not enrollment.student_id:
+                enrollment.grouped_subject_ids = self.env['university.subject']
+                continue
+
+            same_group_enrollments = enrollment.student_id.enrollment_ids.filtered(
+                lambda e: e.career_id == enrollment.career_id
+                and e.study_plan_id == enrollment.study_plan_id
+                and e.year == enrollment.year
+            )
+            enrollment.grouped_subject_ids = same_group_enrollments.mapped('line_ids.subject_id')
+

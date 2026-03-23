@@ -16,6 +16,12 @@ class UniversityStudent(models.Model):
         string='Inscripciones Académicas'
     )
 
+    grouped_enrollment_ids = fields.Many2many(
+        'university.enrollment',
+        string='Inscripciones Agrupadas',
+        compute='_compute_grouped_enrollments',
+    )
+
     # Carrera
     career_id = fields.Many2one(
         'university.career',
@@ -72,3 +78,16 @@ class UniversityStudent(models.Model):
             # Convertimos las duraciones a string y las unimos
             durations = student.career_ids.mapped(lambda c: str(c.duration_years))
             student.career_duration_info = ", ".join(durations) if durations else "N/A"
+
+    @api.depends('enrollment_ids.career_id', 'enrollment_ids.study_plan_id', 'enrollment_ids.year')
+    def _compute_grouped_enrollments(self):
+        for student in self:
+            grouped = self.env['university.enrollment']
+            seen_keys = set()
+            for enrollment in student.enrollment_ids.sorted('id'):
+                key = (enrollment.career_id.id, enrollment.study_plan_id.id, enrollment.year)
+                if key in seen_keys:
+                    continue
+                seen_keys.add(key)
+                grouped |= enrollment
+            student.grouped_enrollment_ids = grouped

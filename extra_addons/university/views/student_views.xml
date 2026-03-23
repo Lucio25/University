@@ -48,11 +48,12 @@
 
                     <notebook>
                         <page string="Inscripciones y Materias" name="enrollments">
-                            <field name="enrollment_ids">
-                                <list string="Inscripciones">
+                            <field name="grouped_enrollment_ids" readonly="1">
+                                <list string="Inscripciones" create="0" delete="0" edit="0">
                                     <field name="career_id"/>
                                     <field name="study_plan_id" string="Plan de Estudios"/>
                                     <field name="year" string="Año Cursado"/>
+                                    <field name="grouped_subject_ids" widget="many2many_tags" string="Materias"/>
                                 </list>
                             </field>
                         </page>
